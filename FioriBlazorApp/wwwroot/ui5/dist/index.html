@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+    <script type="module" crossorigin src="/index.js"></script>
+  </head>
+  <body>
+      <div id="app">
+          <ui5-shellbar primary-title="Corporate Portal"
+                        secondary-title="secondary title"
+                        data-sap-ui-fastnavgroup="true"
+                        with-logo=""
+                        breakpoint-size="M">
+              <ui5-avatar slot="profile"
+                          icon="customer"
+                          fallback-icon="employee"></ui5-avatar>
+              <img slot="logo" src="" />
+
+              <ui5-button icon="nav-back"
+                          slot="startButton"
+                          icon-only=""
+                          has-icon=""></ui5-button>
+          </ui5-shellbar>
+      </div>
+  </body>
+</html>

@@ -1,0 +1,112 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello SAPUI5!</h1>
+
+<div>
+    <div>
+        <ui5-input id="input-1"
+                   value="@Count"
+                   style="--_ui5-v1-23-1-input-icons-count: 0;"></ui5-input>
+    </div>
+    <div >
+        <ui5-button icon="sap-icon://action"
+                    accessible-name="Button with Accessible Name"
+                    has-icon=""
+                    @onclick="HandleOnClick"
+                   >
+            Button Text
+        </ui5-button>
+    </div>
+    <div>
+        <ui5-label style="font-weight: bold;"
+                   required=""
+                   show-colon=""
+                   for="input-3">
+            Secret Code
+        </ui5-label>
+        <ui5-input id="input-1"
+        value="@Text"
+                   oninput="@HandleOnChange"
+             
+                   onchange="@HandleOnChange"
+                   show-suggestions
+                   style="--_ui5-v1-23-1-input-icons-count: 0;"
+                   value-state="@State">
+            <div slot="valueStateMessage">
+                This is an error message. Extra long text used as an error message.
+            </div>
+                
+            @foreach (var item in Items)
+            {
+                <ui5-suggestion-item text="@item"></ui5-suggestion-item>
+            }
+        </ui5-input>
+    </div>
+    <div>
+        <ui5-message-strip design="@MessageStripStyle" onclose="@HandleOnClose">
+            Text: @Text
+           
+        </ui5-message-strip>
+    </div>
+   
+</div>
+
+@code {
+
+    public string Text { get; set; }
+    public int Count { get; set; } = 0;
+    public string MessageStripStyle { get; set; } = "Information";
+    public List<string> Items { get; set; } = new List<string>() { "Information" };
+    public string State { get; set; }
+
+    public void HandleOnSelect()
+    {
+        
+    }
+
+    protected override Task OnInitializedAsync()
+    {
+        Items = new List<string>()
+        {
+             "Information", "Error"
+        };
+        return base.OnInitializedAsync();   
+    }
+
+    public void HandleOnClose()
+    {
+
+    }
+
+    public void HandleOnClick()
+    {
+        Count++;
+        if (!String.IsNullOrEmpty(Text))
+            Items.Add(Text);
+    }
+
+    public void HandleOnChange(ChangeEventArgs __e)
+    {
+        Text = __e?.Value?.ToString();
+
+        if (Text.ToUpper().Contains("ERROR"))
+        {
+            State = "Error";
+            MessageStripStyle = "Negative";
+        }
+        else if (Text.ToUpper().Contains("SUCCESS"))
+        {
+            MessageStripStyle = "Positive";
+        }
+        else
+        {
+            MessageStripStyle = "Information";
+        }
+
+       
+    }
+}
+
+
