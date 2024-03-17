@@ -46,5 +46,6 @@
   </Target>
   <Target Name="CleanUI5" AfterTargets="Clean">
         <RemoveDir Directories="$(UI5Root)" />
+        <RemoveDir Directories="$(SpaRoot)dist" />
     </Target>
 </Project>

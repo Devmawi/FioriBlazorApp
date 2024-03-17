@@ -15,3 +15,9 @@ import { setTheme } from "@ui5/webcomponents-base/dist/config/Theme.js";
 
 // see also: https://github.com/SAP/ui5-webcomponents/blob/main/docs/2-advanced/01-configuration.md#theme
 setTheme("sap_fiori_3");
+
+export function sayHello(text){
+    alert(text)
+}
+
+window.sayHello = sayHello;
